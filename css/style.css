@@ -162,11 +162,9 @@ a { color: var(--navy); transition: color 150ms ease, border-color 150ms ease; }
   display: grid;
   grid-template-columns: 5fr 11fr;
   grid-template-rows: 1fr 1fr;
-  gap: 6px;
+  gap: 3px;
   background: var(--yellow);
-  /* min-height keeps the short right-column tiles from clipping their links
-     at narrow desktop widths, where 42.857vw halves to ~190px per row */
-  height: max(var(--media-h), 520px);
+  height: var(--media-h);
   margin: 8px 0;
 }
 .doorway-tall { grid-row: span 2; }   /* Q1 + Q4: the full left column */

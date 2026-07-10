@@ -5,8 +5,19 @@ async function includePartials() {
     el.outerHTML = await res.text();
   }));
 
-  const link = document.querySelector(`.site-header [data-nav="${document.body.dataset.page}"]`);
+  // highlight the current page in the nav
+  const link = document.querySelector(`.site-nav [data-nav="${document.body.dataset.page}"]`);
   if (link) link.classList.add('active');
+
+  // mobile hamburger
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('siteNav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', includePartials);

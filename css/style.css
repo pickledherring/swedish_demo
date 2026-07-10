@@ -103,6 +103,13 @@ a { color: var(--navy); transition: color 150ms ease, border-color 150ms ease; }
 .accent-yellow { border-left-color: var(--yellow); }
 .accent-blue { border-left-color: var(--blue); }
 
+/* timeline entry: accent text paired with a historical photo */
+.timeline-entry { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.timeline-entry img { width: 100%; object-fit: cover; }
+@media (max-width: 767px) {
+  .timeline-entry { grid-template-columns: 1fr; gap: 24px; }
+}
+
 /* ---- header ---- */
 .site-header {
   /* soft blue band; box-shadow paints it full-bleed without extra markup */
@@ -154,10 +161,21 @@ a { color: var(--navy); transition: color 150ms ease, border-color 150ms ease; }
   text-decoration: none;
   color: #fff;
   background-color: var(--navy);
-  background-image: linear-gradient(to bottom, rgba(18,53,79,0.85) 0%, rgba(18,53,79,0.35) 55%, rgba(18,53,79,0.15) 100%),
-    repeating-linear-gradient(135deg, rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 14px);
+  overflow: hidden;
   border-top: 4px solid var(--yellow);
 }
+/* photo layer + navy gradient for legibility, both behind the content */
+.doorway .doorway-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.doorway::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to bottom, rgba(18,53,79,0.72) 0%, rgba(18,53,79,0.4) 45%, rgba(18,53,79,0.72) 100%);
+}
+.doorway > * { position: relative; z-index: 2; }
 .doorway + .doorway { border-left: 1px solid rgba(255,255,255,0.25); }
 .doorway .kicker { font-size: 26px; font-weight: 700; letter-spacing: 0.02em; color: var(--yellow); }
 .doorway h2 { color: #fff; margin: 6px 0 4px; }
@@ -177,36 +195,29 @@ a { color: var(--navy); transition: color 150ms ease, border-color 150ms ease; }
   color: rgba(255,255,255,0.75); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
 }
 .photo span { border: 1px solid rgba(255,255,255,0.35); padding: 10px 16px; }
+.photo img { width: 100%; height: 100%; object-fit: cover; }
 .ratio-21x9 { aspect-ratio: 21 / 9; }
 .ratio-3x2 { aspect-ratio: 3 / 2; }
 .ratio-4x3 { aspect-ratio: 4 / 3; }
-.media-bar { height: var(--media-h); }   /* shared image-bar height across pages */
 
-/* events "watch us" video placeholder, shares the media-bar height */
-.video-bar {
-  height: var(--media-h);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
-  text-decoration: none;
-  background-color: var(--navy);
-  background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 14px);
-  border-top: 4px solid var(--yellow);
+/* events "watch us" video grid: three responsive 16:9 embeds */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 28px;
 }
-.video-bar .play {
-  width: 72px; height: 72px; border-radius: 50%;
-  background: var(--yellow);
-  position: relative;
-  transition: transform 150ms ease;
+.video-grid iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  display: block;
+  background: var(--navy);
 }
-.video-bar .play::after {
-  content: ""; position: absolute; top: 50%; left: 54%; transform: translate(-50%, -50%);
-  border-style: solid; border-width: 14px 0 14px 24px; border-color: transparent transparent transparent var(--navy);
-}
-.video-bar .video-label { color: #fff; font-weight: 700; }
-.video-bar:hover .play { transform: scale(1.06); }
 
 /* contact venue: 2/3 photo, 1/3 map, compact fixed height */
 .venue-split { display: grid; grid-template-columns: 2fr 1fr; height: var(--media-h); }
-.venue-split .photo { height: 100%; }
+.venue-split .photo { height: 100%; min-width: 0; overflow: hidden; }
 .venue-map { width: 100%; height: 100%; border: 0; display: block; }
 
 /* large section header that delineates a block (e.g. Upcoming events) */
@@ -262,6 +273,7 @@ a { color: var(--navy); transition: color 150ms ease, border-color 150ms ease; }
   .venue-split { grid-template-columns: 1fr; height: auto; }
   .venue-split .photo { aspect-ratio: 3 / 2; }
   .venue-map { height: 220px; }
+  .video-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 767px) {

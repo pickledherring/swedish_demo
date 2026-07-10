@@ -151,12 +151,23 @@ a { color: var(--navy); transition: color 150ms ease, border-color 150ms ease; }
 .flag-rule { height: 3px; background: var(--blue); }
 .flag-rule + .flag-rule { background: var(--yellow); }
 
-/* ---- home doorway panels ---- */
-.doorways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+/* ---- home doorway panels ----
+   Swedish flag proportions: squished left column, elongated right. The yellow
+   container shows through the gaps. "Sing with us" spans the left column. */
+.doorways {
+  display: grid;
+  grid-template-columns: 5fr 11fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px;
+  background: var(--yellow);
+  height: var(--media-h);
+  margin: 8px 0;
+}
+.doorway-tall { grid-row: span 2; }   /* Q1 + Q4: the full left column */
 .doorway {
   position: relative;
   display: flex; flex-direction: column;
-  height: var(--media-h);
+  min-height: 0;
   padding: 28px;
   text-decoration: none;
   color: #fff;
@@ -176,15 +187,14 @@ a { color: var(--navy); transition: color 150ms ease, border-color 150ms ease; }
   background: linear-gradient(to bottom, rgba(18,53,79,0.72) 0%, rgba(18,53,79,0.4) 45%, rgba(18,53,79,0.72) 100%);
 }
 .doorway > * { position: relative; z-index: 2; }
-.doorway + .doorway { border-left: 1px solid rgba(255,255,255,0.25); }
 .doorway .kicker { font-size: 26px; font-weight: 700; letter-spacing: 0.02em; color: var(--yellow); }
-.doorway h2 { color: #fff; margin: 6px 0 4px; }
+.doorway h2 { font-family: var(--sans); color: #fff; margin: 6px 0 4px; }
 .doorway .go { font-weight: 700; color: #fff; border-bottom: 3px solid var(--yellow); align-self: flex-start; padding-bottom: 2px; margin-top: 12px; }
 .doorway:hover h2 { color: var(--yellow); }
 .doorway:hover .go { border-bottom-color: #fff; }
 
 .hero-lede { padding: clamp(36px, 6vw, 56px) 0 clamp(24px, 3vw, 32px); }
-.hero-lede h1 { max-width: 20ch; }
+.hero-lede h1 { max-width: none; white-space: nowrap; }
 .hero-lede p { margin-top: 28px; line-height: 1.7; }
 
 .photo {
@@ -243,7 +253,7 @@ a { color: var(--navy); transition: color 150ms ease, border-color 150ms ease; }
 .event .day { font-family: var(--serif); font-size: 40px; font-weight: 700; color: var(--navy); line-height: 1; }
 .event .month { font-weight: 700; color: var(--muted); text-transform: uppercase; font-size: 20px; }
 .event .time { font-weight: 700; color: var(--blue); font-size: 20px; margin-top: 8px; }
-.event .title { font-family: var(--serif); font-size: 26px; font-weight: 700; color: var(--navy); text-decoration: none; }
+.event .title { font-family: var(--sans); font-size: 26px; font-weight: 700; color: var(--navy); text-decoration: none; }
 .event .title:hover { color: var(--blue); }
 .event .meta { color: var(--muted); margin-top: 6px; }
 .event .desc { margin-top: 8px; max-width: var(--measure); }
@@ -267,9 +277,9 @@ a { color: var(--navy); transition: color 150ms ease, border-color 150ms ease; }
 
 /* ---- responsive ---- */
 @media (max-width: 900px) {
-  .doorways { grid-template-columns: 1fr; }
+  .doorways { grid-template-columns: 1fr; grid-template-rows: none; height: auto; }
+  .doorway-tall { grid-row: auto; }
   .doorway { height: 280px; }
-  .doorway + .doorway { border-left: 0; border-top: 1px solid rgba(255,255,255,0.25); }
   .venue-split { grid-template-columns: 1fr; height: auto; }
   .venue-split .photo { aspect-ratio: 3 / 2; }
   .venue-map { height: 220px; }
@@ -277,6 +287,7 @@ a { color: var(--navy); transition: color 150ms ease, border-color 150ms ease; }
 }
 
 @media (max-width: 767px) {
+  .hero-lede h1 { white-space: normal; }   /* let it wrap rather than overflow on phones */
   .site-header { flex-wrap: wrap; }
   .nav-toggle { display: inline-flex; }
   .site-nav {

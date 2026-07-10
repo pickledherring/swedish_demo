@@ -3,7 +3,7 @@
   --swedish-blue: #006AA7;
   --fjord: #2A5E82;
   --brass: #FECC00;
-  --paper: #E8E0CC;
+  --paper: #F3EEE1;
   --ink: #4B4536;
   --sand: #9A8A63;
   --hairline: #D8D0C2;
@@ -82,8 +82,8 @@ a {
 .caption {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 14px;
-  color: var(--sand);
+  font-size: 17px;
+  color: var(--blue);
   padding-top: 12px;
 }
 

@@ -147,12 +147,16 @@ a {
 }
 
 /* ---- accent-bordered callouts ---- */
-.accent {
-  border-left: 3px solid var(--rule);
+.accent-left {
+  border-left: 7px solid var(--rule);
   padding-left: 20px;
 }
-.accent-yellow { border-left-color: var(--yellow); }
-.accent-blue { border-left-color: var(--blue); }
+.accent-right {
+  border-right: 7px solid var(--rule);
+  padding-right: 20px;
+}
+.accent-yellow { border-color: var(--yellow); }
+.accent-blue { border-color: var(--blue); }
 
 /* timeline */
 .timeline-entry {

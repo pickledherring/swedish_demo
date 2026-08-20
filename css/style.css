@@ -485,6 +485,76 @@ a {
   max-width: var(--measure);
 }
 
+/* ---- members music library ---- */
+.members-banner {
+  height: var(--media-h);
+  max-height: 440px;
+}
+
+.library-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 28px;
+  padding-bottom: 28px;
+}
+.library-bar button {
+  border: 2px solid var(--yellow);
+  font: inherit;
+  cursor: pointer;
+  margin-left: 28px;
+}
+.library-bar button[disabled] {
+  color: var(--muted);
+  border-color: var(--rule);
+  cursor: default;
+}
+
+.score { align-items: center; padding-right: 20px; transition: background-color 150ms ease; }
+.score:nth-child(even) { background: rgba(0,106,167,0.04); }
+.score:hover { background: rgba(0,106,167,0.09); }
+.score input {
+  width: 24px;
+  height: 24px;
+  accent-color: var(--blue);
+  cursor: pointer;
+}
+.score .tag {
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0 14px;
+  margin-right: 8px;
+}
+.score-links {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .score { flex-wrap: wrap; gap: 20px; }
+  .score-links {
+    margin-left: 0;
+    flex-direction: row;
+    align-items: center;
+    gap: 28px;
+  }
+}
+
 /* "see the full calendar" link */
 .calendar-link {
   font-size: 22px;

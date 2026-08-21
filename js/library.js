@@ -1,34 +1,19 @@
-// Members music library.
-//
-// Gating is Cloudflare Access, which runs at the edge: an unauthenticated
-// visitor never reaches this file, they get the Access login screen instead.
-// So this script does not authenticate anyone. It only reads the identity
-// Access already established, and notices when that session has gone stale.
+// Members music library: row selection and downloads.
+// Cloudflare Access gates this page at the edge, so nothing here authenticates;
+// it only catches a session that expired after load.
 
 const ACCESS_IDENTITY = '/cdn-cgi/access/get-identity';
 const ACCESS_LOGOUT = '/cdn-cgi/access/logout';
 
-// Ask Access who the current visitor is.
-// Returns null when the page is opened outside Access (local preview).
-async function getIdentity() {
-  try {
-    const res = await fetch(ACCESS_IDENTITY, { credentials: 'same-origin' });
-    if (!res.ok) return null;
-    return await res.json();
-  } catch {
-    return null;
-  }
-}
-
-// An Access session lasts a fixed period, so a page left open overnight will
-// still render while every download 302s to the login screen. Detect that by
-// watching for a redirect off-origin and send them back through the front door.
+// True when the Access session is gone and downloads would redirect to login.
 async function sessionExpired() {
   try {
     const res = await fetch(ACCESS_IDENTITY, { credentials: 'same-origin' });
-    return res.redirected || res.status === 401 || res.status === 403;
-  } catch {
+    if (res.redirected) return true;
+    if (res.status === 401 || res.status === 403) return true;
     return false;
+  } catch {
+    return false;   // opened outside Access, e.g. local preview
   }
 }
 
@@ -36,56 +21,85 @@ function reauthenticate() {
   window.location.href = `${ACCESS_LOGOUT}?returnTo=${encodeURIComponent(window.location.href)}`;
 }
 
-// STUB: hand the selected pieces to whatever serves the files.
-// Replace with the real implementation once the scores are hosted, e.g. POST
-// the titles to a Worker that streams back a zip, or fetch each PDF in turn.
-// Access forwards the session cookie on same-origin requests, so the endpoint
-// stays protected without any token work here.
-async function downloadScores(titles) {
-  console.log('TODO: download', titles);
-  window.alert(`Downloading ${titles.length} piece(s). Hook up downloadScores() to the real files.`);
+// Total files across selected pieces.
+function countFiles(items) {
+  let files = 0;
+  for (const item of items) {
+    files += item.parts.length;
+  }
+  return files;
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+// STUB: replace with the real fetch once scores are hosted.
+// items: [{ title, parts: ['music', 'translation'] }]
+async function downloadScores(items) {
+  console.log('TODO: download', items);
+  window.alert(`Downloading ${countFiles(items)} file(s) across ${items.length} piece(s).`);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
   const list = document.getElementById('scoreList');
   if (!list) return;
 
-  const boxes = Array.from(list.querySelectorAll('input[type="checkbox"]'));
+  const rows = Array.from(list.querySelectorAll('.score'));
   const count = document.getElementById('selectionCount');
   const selectAll = document.getElementById('selectAll');
   const downloadAll = document.getElementById('downloadAll');
+  const downloadMusic = document.getElementById('downloadMusic');
 
-  const identity = await getIdentity();
-  if (identity && identity.email) {
-    count.dataset.email = identity.email;
+  const rowCheckbox = (row) => row.querySelector('.date input');
+  const translationCheckbox = (row) => row.querySelector('input[data-part="translation"]');
+  const checkedRows = () => rows.filter((row) => rowCheckbox(row).checked);
+
+  // Selected pieces and their files. Music is always included; musicOnly
+  // ignores the per-row translation boxes.
+  function selection(musicOnly) {
+    return checkedRows().map((row) => {
+      const parts = ['music'];
+      if (!musicOnly && translationCheckbox(row).checked) {
+        parts.push('translation');
+      }
+      return { title: rowCheckbox(row).dataset.title, parts };
+    });
   }
-
-  const selected = () => boxes.filter((b) => b.checked);
 
   function render() {
-    const n = selected().length;
-    count.textContent = n === 0 ? 'Nothing selected'
-      : n === 1 ? '1 piece selected'
-      : `${n} pieces selected`;
-    downloadAll.disabled = n === 0;
-    selectAll.textContent = n === boxes.length ? 'Clear all' : 'Select all';
+    const items = selection(false);
+    const files = countFiles(items);
+
+    if (items.length === 0) {
+      count.textContent = 'Nothing selected';
+    } else {
+      const pieceWord = items.length === 1 ? 'piece' : 'pieces';
+      const fileWord = files === 1 ? 'file' : 'files';
+      count.textContent = `${items.length} ${pieceWord}, ${files} ${fileWord}`;
+    }
+
+    downloadAll.disabled = items.length === 0;
+    downloadMusic.disabled = items.length === 0;
+    selectAll.textContent = items.length === rows.length ? 'Clear all' : 'Select all';
   }
 
-  boxes.forEach((b) => b.addEventListener('change', render));
-
-  selectAll.addEventListener('click', () => {
-    const fill = selected().length !== boxes.length;
-    boxes.forEach((b) => { b.checked = fill; });
-    render();
-  });
-
-  downloadAll.addEventListener('click', async () => {
+  async function startDownload(musicOnly) {
     if (await sessionExpired()) {
       reauthenticate();
       return;
     }
-    await downloadScores(selected().map((b) => b.dataset.title));
+    await downloadScores(selection(musicOnly));
+  }
+
+  list.addEventListener('change', render);
+
+  selectAll.addEventListener('click', () => {
+    const fill = checkedRows().length !== rows.length;
+    for (const row of rows) {
+      rowCheckbox(row).checked = fill;
+    }
+    render();
   });
+
+  downloadAll.addEventListener('click', () => startDownload(false));
+  downloadMusic.addEventListener('click', () => startDownload(true));
 
   render();
 });

@@ -1,3 +1,4 @@
+// Swaps [data-include] slots for their partial, then wires up the nav.
 async function includePartials() {
   const slots = document.querySelectorAll('[data-include]');
   await Promise.all(Array.from(slots).map(async (el) => {

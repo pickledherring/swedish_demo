@@ -10,9 +10,7 @@
 
 <div data-include="partials/header.html"></div>
 
-<div class="photo members-banner bleed">
-  <img src="images/Swedish_Singers_June_2025.jpg" alt="The Swedish Singers of Seattle, June 2025">
-</div>
+<div class="members-banner bleed"></div>
 
 <section class="section">
   <div class="page-title">
@@ -30,8 +28,9 @@
 <section class="section">
   <div class="library-bar">
     <div class="muted" id="selectionCount">Nothing selected</div>
-    <div>
-      <button type="button" id="selectAll">Select all</button>
+    <div class="library-actions">
+      <button type="button" class="btn-quiet" id="selectAll">Select all</button>
+      <button type="button" class="btn-quiet" id="downloadMusic" disabled>Music only</button>
       <button type="button" id="downloadAll" disabled>Download selected</button>
     </div>
   </div>
@@ -40,151 +39,206 @@
 
     <li class="event score">
       <label class="date">
-        <input type="checkbox" data-title="Helan går">
-        <span class="visually-hidden">Select Helan går</span>
+        <input type="checkbox" data-title="Helan går" aria-label="Select Helan går">
       </label>
       <div>
         <span class="title">Helan går</span>
-        <div class="meta"><span class="tag">Drinking</span> TTBB</div>
+        <div class="meta"><span class="voicing">TTBB</span></div>
+        <div class="parts">
+          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+        </div>
+      </div>
+      <div class="score-tags">
+        <span class="tag">Drinking</span>
       </div>
       <div class="score-links">
-        <a class="ylink" href="#" download>Sheet music</a>
-        <a class="blink" href="#" download>Translation</a>
+        <a href="#" download>Sheet music</a>
+        <a href="#" download>Translation</a>
       </div>
     </li>
 
     <li class="event score">
       <label class="date">
-        <input type="checkbox" data-title="Sköna maj, välkommen">
-        <span class="visually-hidden">Select Sköna maj, välkommen</span>
+        <input type="checkbox" data-title="Sköna maj, välkommen" aria-label="Select Sköna maj, välkommen">
       </label>
       <div>
         <span class="title">Sköna maj, välkommen</span>
-        <div class="meta"><span class="tag">Spring</span> SATB</div>
+        <div class="meta"><span class="voicing">SATB</span></div>
+        <div class="parts">
+          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+        </div>
+      </div>
+      <div class="score-tags">
+        <span class="tag">Spring</span>
       </div>
       <div class="score-links">
-        <a class="ylink" href="#" download>Sheet music</a>
-        <a class="blink" href="#" download>Translation</a>
+        <a href="#" download>Sheet music</a>
+        <a href="#" download>Translation</a>
       </div>
     </li>
 
     <li class="event score">
       <label class="date">
-        <input type="checkbox" data-title="Uti vår hage">
-        <span class="visually-hidden">Select Uti vår hage</span>
+        <input type="checkbox" data-title="Uti vår hage" aria-label="Select Uti vår hage">
       </label>
       <div>
         <span class="title">Uti vår hage</span>
-        <div class="meta"><span class="tag">Folk</span> <span class="tag">Summer</span> SATB</div>
+        <div class="meta"><span class="voicing">SATB</span></div>
+        <div class="parts">
+          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+        </div>
+      </div>
+      <div class="score-tags">
+        <span class="tag">Folk</span>
+        <span class="tag">Summer</span>
       </div>
       <div class="score-links">
-        <a class="ylink" href="#" download>Sheet music</a>
-        <a class="blink" href="#" download>Translation</a>
+        <a href="#" download>Sheet music</a>
+        <a href="#" download>Translation</a>
       </div>
     </li>
 
     <li class="event score">
       <label class="date">
-        <input type="checkbox" data-title="Den blomstertid nu kommer">
-        <span class="visually-hidden">Select Den blomstertid nu kommer</span>
+        <input type="checkbox" data-title="Den blomstertid nu kommer" aria-label="Select Den blomstertid nu kommer">
       </label>
       <div>
         <span class="title">Den blomstertid nu kommer</span>
-        <div class="meta"><span class="tag">Hymn</span> <span class="tag">Summer</span> SATB</div>
+        <div class="meta"><span class="voicing">SATB</span></div>
+        <div class="parts">
+          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+        </div>
+      </div>
+      <div class="score-tags">
+        <span class="tag">Hymn</span>
+        <span class="tag">Summer</span>
       </div>
       <div class="score-links">
-        <a class="ylink" href="#" download>Sheet music</a>
-        <a class="blink" href="#" download>Translation</a>
+        <a href="#" download>Sheet music</a>
+        <a href="#" download>Translation</a>
       </div>
     </li>
 
     <li class="event score">
       <label class="date">
-        <input type="checkbox" data-title="Sankta Lucia">
-        <span class="visually-hidden">Select Sankta Lucia</span>
+        <input type="checkbox" data-title="Sankta Lucia" aria-label="Select Sankta Lucia">
       </label>
       <div>
         <span class="title">Sankta Lucia</span>
-        <div class="meta"><span class="tag">Christmas</span> SSA</div>
+        <div class="meta"><span class="voicing">SSA</span></div>
+        <div class="parts">
+          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+        </div>
+      </div>
+      <div class="score-tags">
+        <span class="tag">Christmas</span>
       </div>
       <div class="score-links">
-        <a class="ylink" href="#" download>Sheet music</a>
-        <a class="blink" href="#" download>Translation</a>
+        <a href="#" download>Sheet music</a>
+        <a href="#" download>Translation</a>
       </div>
     </li>
 
     <li class="event score">
       <label class="date">
-        <input type="checkbox" data-title="Nu tändas tusen juleljus">
-        <span class="visually-hidden">Select Nu tändas tusen juleljus</span>
+        <input type="checkbox" data-title="Nu tändas tusen juleljus" aria-label="Select Nu tändas tusen juleljus">
       </label>
       <div>
         <span class="title">Nu tändas tusen juleljus</span>
-        <div class="meta"><span class="tag">Christmas</span> <span class="tag">Hymn</span> SATB</div>
+        <div class="meta"><span class="voicing">SATB</span></div>
+        <div class="parts">
+          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+        </div>
+      </div>
+      <div class="score-tags">
+        <span class="tag">Christmas</span>
+        <span class="tag">Hymn</span>
       </div>
       <div class="score-links">
-        <a class="ylink" href="#" download>Sheet music</a>
-        <a class="blink" href="#" download>Translation</a>
+        <a href="#" download>Sheet music</a>
+        <a href="#" download>Translation</a>
       </div>
     </li>
 
     <li class="event score">
       <label class="date">
-        <input type="checkbox" data-title="Vårvindar friska">
-        <span class="visually-hidden">Select Vårvindar friska</span>
+        <input type="checkbox" data-title="Vårvindar friska" aria-label="Select Vårvindar friska">
       </label>
       <div>
         <span class="title">Vårvindar friska</span>
-        <div class="meta"><span class="tag">Folk</span> <span class="tag">Spring</span> SATB</div>
+        <div class="meta"><span class="voicing">SATB</span></div>
+        <div class="parts">
+          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+        </div>
+      </div>
+      <div class="score-tags">
+        <span class="tag">Folk</span>
+        <span class="tag">Spring</span>
       </div>
       <div class="score-links">
-        <a class="ylink" href="#" download>Sheet music</a>
-        <a class="blink" href="#" download>Translation</a>
+        <a href="#" download>Sheet music</a>
+        <a href="#" download>Translation</a>
       </div>
     </li>
 
     <li class="event score">
       <label class="date">
-        <input type="checkbox" data-title="Du gamla, du fria">
-        <span class="visually-hidden">Select Du gamla, du fria</span>
+        <input type="checkbox" data-title="Du gamla, du fria" aria-label="Select Du gamla, du fria">
       </label>
       <div>
         <span class="title">Du gamla, du fria</span>
-        <div class="meta"><span class="tag">Anthem</span> SATB</div>
+        <div class="meta"><span class="voicing">SATB</span></div>
+        <div class="parts">
+          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+        </div>
+      </div>
+      <div class="score-tags">
+        <span class="tag">Anthem</span>
       </div>
       <div class="score-links">
-        <a class="ylink" href="#" download>Sheet music</a>
-        <a class="blink" href="#" download>Translation</a>
+        <a href="#" download>Sheet music</a>
+        <a href="#" download>Translation</a>
       </div>
     </li>
 
     <li class="event score">
       <label class="date">
-        <input type="checkbox" data-title="Kristallen den fina">
-        <span class="visually-hidden">Select Kristallen den fina</span>
+        <input type="checkbox" data-title="Kristallen den fina" aria-label="Select Kristallen den fina">
       </label>
       <div>
         <span class="title">Kristallen den fina</span>
-        <div class="meta"><span class="tag">Folk</span> SATB</div>
+        <div class="meta"><span class="voicing">SATB</span></div>
+        <div class="parts">
+          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+        </div>
+      </div>
+      <div class="score-tags">
+        <span class="tag">Folk</span>
       </div>
       <div class="score-links">
-        <a class="ylink" href="#" download>Sheet music</a>
-        <a class="blink" href="#" download>Translation</a>
+        <a href="#" download>Sheet music</a>
+        <a href="#" download>Translation</a>
       </div>
     </li>
 
     <li class="event score">
       <label class="date">
-        <input type="checkbox" data-title="Sjung om studentens lyckliga dag">
-        <span class="visually-hidden">Select Sjung om studentens lyckliga dag</span>
+        <input type="checkbox" data-title="Sjung om studentens lyckliga dag" aria-label="Select Sjung om studentens lyckliga dag">
       </label>
       <div>
         <span class="title">Sjung om studentens lyckliga dag</span>
-        <div class="meta"><span class="tag">Drinking</span> <span class="tag">Spring</span> TTBB</div>
+        <div class="meta"><span class="voicing">TTBB</span></div>
+        <div class="parts">
+          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+        </div>
+      </div>
+      <div class="score-tags">
+        <span class="tag">Drinking</span>
+        <span class="tag">Spring</span>
       </div>
       <div class="score-links">
-        <a class="ylink" href="#" download>Sheet music</a>
-        <a class="blink" href="#" download>Translation</a>
+        <a href="#" download>Sheet music</a>
+        <a href="#" download>Translation</a>
       </div>
     </li>
 

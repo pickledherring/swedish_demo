@@ -44,27 +44,42 @@ document.addEventListener('DOMContentLoaded', () => {
   const rows = Array.from(list.querySelectorAll('.score'));
   const count = document.getElementById('selectionCount');
   const selectAll = document.getElementById('selectAll');
+  const selectMusicOnly = document.getElementById('selectMusicOnly');
+  const selectTranslationsOnly = document.getElementById('selectTranslationsOnly');
   const downloadAll = document.getElementById('downloadAll');
-  const downloadMusic = document.getElementById('downloadMusic');
 
   const rowCheckbox = (row) => row.querySelector('.date input');
-  const translationCheckbox = (row) => row.querySelector('input[data-part="translation"]');
+  const partCheckbox = (row, part) => row.querySelector(`input[data-part="${part}"]`);
   const checkedRows = () => rows.filter((row) => rowCheckbox(row).checked);
 
-  // Selected pieces and their files. Music is always included; musicOnly
-  // ignores the per-row translation boxes.
-  function selection(musicOnly) {
-    return checkedRows().map((row) => {
-      const parts = ['music'];
-      if (!musicOnly && translationCheckbox(row).checked) {
-        parts.push('translation');
-      }
-      return { title: rowCheckbox(row).dataset.title, parts };
-    });
+  // Selected pieces and their files; a row with both parts off yields nothing.
+  function selection() {
+    const items = [];
+
+    for (const row of checkedRows()) {
+      const parts = [];
+      if (partCheckbox(row, 'music').checked) parts.push('music');
+      if (partCheckbox(row, 'translation').checked) parts.push('translation');
+      if (parts.length === 0) continue;
+
+      items.push({ title: rowCheckbox(row).dataset.title, parts });
+    }
+
+    return items;
+  }
+
+  // checks every piece, keeping only the named part
+  function selectOnly(part) {
+    for (const row of rows) {
+      rowCheckbox(row).checked = true;
+      partCheckbox(row, 'music').checked = part === 'music';
+      partCheckbox(row, 'translation').checked = part === 'translation';
+    }
+    render();
   }
 
   function render() {
-    const items = selection(false);
+    const items = selection();
     const files = countFiles(items);
 
     if (items.length === 0) {
@@ -76,16 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     downloadAll.disabled = items.length === 0;
-    downloadMusic.disabled = items.length === 0;
     selectAll.textContent = items.length === rows.length ? 'Clear all' : 'Select all';
-  }
-
-  async function startDownload(musicOnly) {
-    if (await sessionExpired()) {
-      reauthenticate();
-      return;
-    }
-    await downloadScores(selection(musicOnly));
   }
 
   list.addEventListener('change', render);
@@ -94,12 +100,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const fill = checkedRows().length !== rows.length;
     for (const row of rows) {
       rowCheckbox(row).checked = fill;
+      if (fill) {
+        partCheckbox(row, 'music').checked = true;
+        partCheckbox(row, 'translation').checked = true;
+      }
     }
     render();
   });
 
-  downloadAll.addEventListener('click', () => startDownload(false));
-  downloadMusic.addEventListener('click', () => startDownload(true));
+  selectMusicOnly.addEventListener('click', () => selectOnly('music'));
+  selectTranslationsOnly.addEventListener('click', () => selectOnly('translation'));
+
+  downloadAll.addEventListener('click', async () => {
+    if (await sessionExpired()) {
+      reauthenticate();
+      return;
+    }
+    await downloadScores(selection());
+  });
 
   render();
 });

@@ -10,18 +10,23 @@
 
 <div data-include="partials/header.html"></div>
 
-<div class="members-banner bleed"></div>
+<div class="members-banner bleed">
+  <h2 class="eyebrow">Members</h2>
+</div>
 
 <section class="section">
   <div class="page-title">
-    <div class="eyebrow">Members</div>
     <h1>Music Library</h1>
   </div>
 
-  <div class="accent accent-yellow">
+  <div class="notice">
     <div class="eyebrow">Trouble getting in?</div>
     <p>The password is the one Dan sends out to the whole chorus. It is not a personal password, and it does not change week to week.</p>
-    <p>Looking for the rehearsal schedule? That is on the <a href="Events.html" class="blink">Events page</a>, and needs no password. Looking for a piece that is not listed below? Everything we sing should end up here, but some of the older scores have not been scanned yet.</p>
+  </div>
+
+  <div class="notice">
+    <div class="eyebrow">Looking for something else?</div>
+    <p>The rehearsal schedule is on the <a href="Events.html" class="blink">Events page</a>. If a piece we sing is not listed below, it has most likely not been scanned yet.</p>
   </div>
 </section>
 
@@ -30,7 +35,8 @@
     <div class="muted" id="selectionCount">Nothing selected</div>
     <div class="library-actions">
       <button type="button" class="btn-quiet" id="selectAll">Select all</button>
-      <button type="button" class="btn-quiet" id="downloadMusic" disabled>Music only</button>
+      <button type="button" class="btn-quiet" id="selectMusicOnly">Music only</button>
+      <button type="button" class="btn-quiet" id="selectTranslationsOnly">Translations only</button>
       <button type="button" id="downloadAll" disabled>Download selected</button>
     </div>
   </div>
@@ -41,11 +47,13 @@
       <label class="date">
         <input type="checkbox" data-title="Helan går" aria-label="Select Helan går">
       </label>
-      <div>
+      <div class="score-body">
         <span class="title">Helan går</span>
-        <div class="meta"><span class="voicing">TTBB</span></div>
+        <div class="composer">Trad. &middot; arr. Hugo Alfvén</div>
         <div class="parts">
-          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+          <label><input type="checkbox" data-part="music" checked><span>Music</span></label>
+          <label><input type="checkbox" data-part="translation" checked><span>Translation</span></label>
+        <span class="score-voicing">TTBB</span>
         </div>
       </div>
       <div class="score-tags">
@@ -61,11 +69,13 @@
       <label class="date">
         <input type="checkbox" data-title="Sköna maj, välkommen" aria-label="Select Sköna maj, välkommen">
       </label>
-      <div>
+      <div class="score-body">
         <span class="title">Sköna maj, välkommen</span>
-        <div class="meta"><span class="voicing">SATB</span></div>
+        <div class="composer">Trad. &middot; arr. Gunnar Wennerberg</div>
         <div class="parts">
-          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+          <label><input type="checkbox" data-part="music" checked><span>Music</span></label>
+          <label><input type="checkbox" data-part="translation" checked><span>Translation</span></label>
+        <span class="score-voicing">SATB</span>
         </div>
       </div>
       <div class="score-tags">
@@ -81,11 +91,13 @@
       <label class="date">
         <input type="checkbox" data-title="Uti vår hage" aria-label="Select Uti vår hage">
       </label>
-      <div>
+      <div class="score-body">
         <span class="title">Uti vår hage</span>
-        <div class="meta"><span class="voicing">SATB</span></div>
+        <div class="composer">Trad. &middot; arr. Hugo Alfvén</div>
         <div class="parts">
-          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+          <label><input type="checkbox" data-part="music" checked><span>Music</span></label>
+          <label><input type="checkbox" data-part="translation" checked><span>Translation</span></label>
+        <span class="score-voicing">SATB</span>
         </div>
       </div>
       <div class="score-tags">
@@ -102,11 +114,13 @@
       <label class="date">
         <input type="checkbox" data-title="Den blomstertid nu kommer" aria-label="Select Den blomstertid nu kommer">
       </label>
-      <div>
+      <div class="score-body">
         <span class="title">Den blomstertid nu kommer</span>
-        <div class="meta"><span class="voicing">SATB</span></div>
+        <div class="composer">Israel Kolmodin &middot; arr. Otto Olsson</div>
         <div class="parts">
-          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+          <label><input type="checkbox" data-part="music" checked><span>Music</span></label>
+          <label><input type="checkbox" data-part="translation" checked><span>Translation</span></label>
+        <span class="score-voicing">SATB</span>
         </div>
       </div>
       <div class="score-tags">
@@ -123,11 +137,13 @@
       <label class="date">
         <input type="checkbox" data-title="Sankta Lucia" aria-label="Select Sankta Lucia">
       </label>
-      <div>
+      <div class="score-body">
         <span class="title">Sankta Lucia</span>
-        <div class="meta"><span class="voicing">SSA</span></div>
+        <div class="composer">Teodoro Cottrau &middot; arr. Sven Lilja</div>
         <div class="parts">
-          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+          <label><input type="checkbox" data-part="music" checked><span>Music</span></label>
+          <label><input type="checkbox" data-part="translation" checked><span>Translation</span></label>
+        <span class="score-voicing">SSA</span>
         </div>
       </div>
       <div class="score-tags">
@@ -143,11 +159,13 @@
       <label class="date">
         <input type="checkbox" data-title="Nu tändas tusen juleljus" aria-label="Select Nu tändas tusen juleljus">
       </label>
-      <div>
+      <div class="score-body">
         <span class="title">Nu tändas tusen juleljus</span>
-        <div class="meta"><span class="voicing">SATB</span></div>
+        <div class="composer">Emmy Köhler &middot; arr. Anders Öhrwall</div>
         <div class="parts">
-          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+          <label><input type="checkbox" data-part="music" checked><span>Music</span></label>
+          <label><input type="checkbox" data-part="translation" checked><span>Translation</span></label>
+        <span class="score-voicing">SATB</span>
         </div>
       </div>
       <div class="score-tags">
@@ -164,11 +182,13 @@
       <label class="date">
         <input type="checkbox" data-title="Vårvindar friska" aria-label="Select Vårvindar friska">
       </label>
-      <div>
+      <div class="score-body">
         <span class="title">Vårvindar friska</span>
-        <div class="meta"><span class="voicing">SATB</span></div>
+        <div class="composer">Trad. &middot; arr. David Wikander</div>
         <div class="parts">
-          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+          <label><input type="checkbox" data-part="music" checked><span>Music</span></label>
+          <label><input type="checkbox" data-part="translation" checked><span>Translation</span></label>
+        <span class="score-voicing">SATB</span>
         </div>
       </div>
       <div class="score-tags">
@@ -185,56 +205,17 @@
       <label class="date">
         <input type="checkbox" data-title="Du gamla, du fria" aria-label="Select Du gamla, du fria">
       </label>
-      <div>
+      <div class="score-body">
         <span class="title">Du gamla, du fria</span>
-        <div class="meta"><span class="voicing">SATB</span></div>
+        <div class="composer">Richard Dybeck &middot; arr. Hugo Alfvén</div>
         <div class="parts">
-          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
+          <label><input type="checkbox" data-part="music" checked><span>Music</span></label>
+          <label><input type="checkbox" data-part="translation" checked><span>Translation</span></label>
+        <span class="score-voicing">SATB</span>
         </div>
       </div>
       <div class="score-tags">
         <span class="tag">Anthem</span>
-      </div>
-      <div class="score-links">
-        <a href="#" download>Sheet music</a>
-        <a href="#" download>Translation</a>
-      </div>
-    </li>
-
-    <li class="event score">
-      <label class="date">
-        <input type="checkbox" data-title="Kristallen den fina" aria-label="Select Kristallen den fina">
-      </label>
-      <div>
-        <span class="title">Kristallen den fina</span>
-        <div class="meta"><span class="voicing">SATB</span></div>
-        <div class="parts">
-          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
-        </div>
-      </div>
-      <div class="score-tags">
-        <span class="tag">Folk</span>
-      </div>
-      <div class="score-links">
-        <a href="#" download>Sheet music</a>
-        <a href="#" download>Translation</a>
-      </div>
-    </li>
-
-    <li class="event score">
-      <label class="date">
-        <input type="checkbox" data-title="Sjung om studentens lyckliga dag" aria-label="Select Sjung om studentens lyckliga dag">
-      </label>
-      <div>
-        <span class="title">Sjung om studentens lyckliga dag</span>
-        <div class="meta"><span class="voicing">TTBB</span></div>
-        <div class="parts">
-          <label><input type="checkbox" data-part="translation" checked><span>with translation</span></label>
-        </div>
-      </div>
-      <div class="score-tags">
-        <span class="tag">Drinking</span>
-        <span class="tag">Spring</span>
       </div>
       <div class="score-links">
         <a href="#" download>Sheet music</a>

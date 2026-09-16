@@ -34,8 +34,7 @@ img {
   display: block;
 }
 
-/* ---- full-bleed grid wrapper ----
-   Content sits in the centered column; anything with .bleed spans edge to edge. */
+/* full-bleed grid wrapper */
 .page {
   display: grid;
   grid-template-columns:
@@ -307,7 +306,7 @@ a {
 
 .doorway-join,
 .doorway-join-more {
-  background: transparent; /* let the parent's photo show through */
+  background: transparent;
 }
 
 .doorway-join      { border-bottom: 7px solid var(--yellow); }
@@ -713,6 +712,46 @@ a {
   font-weight: 700;
   border-bottom-width: 3px;
   padding-bottom: 3px;
+}
+
+/* donate now */
+.donate-now {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.donate-now.eyebrow {
+  font-family: var(--serif);
+  margin-bottom: 6px;
+}
+.donate-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 80px;
+  gap: 3px;
+  font-size: 30px;
+  font-weight: 800;
+  color: #fff;
+  background: var(--blue);
+  border: 5px solid var(--blue);
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.donate-button:hover {
+  background: var(--yellow);
+  color: #fff;
+}
+
+.donate-button svg {
+  width: 40px;
+  height: 40px;
+  fill: currentColor;
 }
 
 /* ---- footer ---- */

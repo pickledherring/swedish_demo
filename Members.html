@@ -14,6 +14,9 @@
   <h2 class="eyebrow">Members</h2>
 </div>
 
+<div class="library-split">
+
+<div class="library-side">
 <section class="section">
   <div class="page-title">
     <h1>Music Library</h1>
@@ -28,9 +31,7 @@
     <div class="eyebrow">Looking for something else?</div>
     <p>The rehearsal schedule is on the <a href="Events.html" class="blink">Events page</a>. If a piece we sing is not listed below, it has most likely not been scanned yet.</p>
   </div>
-</section>
 
-<section class="section">
   <div class="library-bar">
     <div class="muted" id="selectionCount">Nothing selected</div>
     <div class="library-actions">
@@ -40,7 +41,10 @@
       <button type="button" id="downloadAll" disabled>Download selected</button>
     </div>
   </div>
+</section>
+</div>
 
+<section class="section library-list">
   <ul class="events" id="scoreList">
 
     <li class="event score">
@@ -225,6 +229,8 @@
 
   </ul>
 </section>
+
+</div>
 
 <div data-include="partials/footer.html"></div>
 

@@ -953,6 +953,11 @@ a {
   }
   .site-nav a {
     padding: 2px;
+    margin: 4px;
+  }
+  .event {
+    padding: 8px 20px 8px 8px;
+    flex: 0;
   }
 }
 
@@ -1013,22 +1018,16 @@ a {
 
   .event {
     gap: 8px;
-    padding: 8px 0 8px 20px;
     border-bottom: 4px solid var(--navy);
     border-left: 7px solid var(--blue);
     transition: background-color 180ms ease;
   }
-  .event .date {
-    column-gap: 4px;
-    row-gap: 2px;
-  }
   .event .weekday {
     font-size: var(--fs-md);
-    margin-top: 8px;
   }
   .event .month {
     text-transform: uppercase;
-    font-size: var(--fs-lg);
+    font-size: var(--fs-md);
   }
   .event .day {
     font-size: var(--fs-lg);

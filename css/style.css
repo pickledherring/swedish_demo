@@ -561,6 +561,8 @@ a {
 }
 .event .desc {
   margin-top: 8px;
+  margin-right: 8px;
+  padding-right: 8px;
   max-width: var(--measure);
 }
 
@@ -842,19 +844,15 @@ a {
 @media (min-width: 1600px) {
   :root {
     --fs-sm: 20px;
-    --fs-md: 22px;
-    --fs-lg: 30px;
-    --fs-xl: 38px;
-    --fs-2xl: 48px;
     --bar-w: 110px;
     --bar-stripe-w: 11px;
     --wave-h: 28px;
   }
   p, .event .desc { max-width: none; }
 
-  .brand { font-size: var(--fs-2xl); }
+  .brand { font-size: var(--fs-xl); }
 
-  .site-nav a { font-size: var(--fs-xl); }
+  .site-nav a { font-size: var(--fs-lg); }
 
   [data-page="home"] .home-split {
     display: grid;
@@ -1038,6 +1036,7 @@ a {
   .event .desc {
     margin-top: 4px;
     max-width: var(--measure);
+
   }
 
   /* header */

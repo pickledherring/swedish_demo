@@ -411,6 +411,7 @@ a {
   max-width: 600px;
   margin-top: var(--sp-lg);
 }
+.video-grid + .section-head { margin-top: var(--sp-2xl); }
 
 .video-link {
   position: relative;
@@ -458,7 +459,6 @@ a {
   gap: 3px;
   background: var(--yellow);
   height: var(--media-h);
-  margin: 8px 0;
 }
 .venue-split .photo {
   height: 100%;

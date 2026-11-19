@@ -482,7 +482,12 @@ a {
 }
 
 /* ---- events ---- */
-.events { list-style: none; margin: 0; padding: 0; }
+.events {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.events a { text-decoration: none;}
 .event {
   display: flex;
   align-items: flex-start;
@@ -537,9 +542,7 @@ a {
   font-size: var(--fs-md);
   font-weight: 700;
   color: var(--navy);
-  text-decoration: none;
 }
-.event .title:hover { color: var(--blue); }
 .event .meta {
   color: var(--muted);
   margin-top: 6px;

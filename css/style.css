@@ -1037,6 +1037,12 @@ a {
     max-width: var(--measure);
 
   }
+  .event .title {
+    font-size: var(--fs-sm);
+  }
+  .event .meta {
+    font-size: var(--fs-sm);
+  }
 
   /* header */
   .lead { font-size: var(--fs-sm); }
